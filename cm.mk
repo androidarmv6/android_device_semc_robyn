@@ -5,7 +5,7 @@ $(call inherit-product, vendor/cm/config/gsm.mk)
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/semc/robyn/device.mk)
+$(call inherit-product, device/semc/robyn/robyn.mk)
 
 # Setup device configuration
 PRODUCT_RELEASE_NAME := E10i
