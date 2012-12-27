@@ -25,12 +25,15 @@
 # against the traditional rules of inheritance).
 
 # inherit from the common version
--include device/semc/msm7x27-common/BoardConfigCommon.mk
+include device/semc/msm7x27-common/BoardConfigCommon.mk
 
 # Info
 TARGET_BOOTLOADER_BOARD_NAME := delta
 TARGET_OTA_ASSERT_DEVICE := E10i,E10a,robyn
 PRODUCT_BUILD_PROP_OVERRIDES += TARGET_BOOTLOADER_BOARD_NAME=robyn
+
+# Kernel
+TARGET_KERNEL_CONFIG := cyanogenmod_robyn_defconfig 
 
 # Touchscreen
 BOARD_USE_LEGACY_TOUCHSCREEN := true

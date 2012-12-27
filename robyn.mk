@@ -15,21 +15,23 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
+$(call inherit-product, device/mdpi-common/mdpi.mk)
+$(call inherit-product, device/ldpi-common/ldpi.mk)
+$(call inherit-product, vendor/semc/robyn/robyn-vendor.mk)
+$(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
 
 # Inherit from the common version
--include device/semc/msm7x27-common/msm7x27.mk
+include device/semc/msm7x27-common/common.mk
 
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
+
+# Boot files
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := robyn
 PRODUCT_DEVICE := robyn
 PRODUCT_MODEL := E10i
-
-# Boot files
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
-endif
 
 # media configuration xml file
 PRODUCT_COPY_FILES += \
