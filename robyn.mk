@@ -16,8 +16,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/tiny.mk)
 $(call inherit-product, vendor/semc/robyn/robyn-vendor.mk)
 $(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
 
-DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
-
 -include device/semc/msm7x27-common/msm7x27.mk
 
 # Discard inherited values and use our own instead.
@@ -51,10 +49,10 @@ PRODUCT_COPY_FILES += \
 
 # Robyn uses low-density artwork where available
 PRODUCT_AAPT_CONFIG := normal ldpi mdpi
-PRODUCT_AAPT_PREF_CONFIG := mdpi
-PRODUCT_LOCALES += \
- 		ldpi \
-		mdpi
+PRODUCT_AAPT_PREF_CONFIG := ldpi
+
+$(call inherit-product, device/ldpi-common/ldpi.mk)
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Prebuilt Binaries
 PRODUCT_COPY_FILES += \
