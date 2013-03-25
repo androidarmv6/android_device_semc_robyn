@@ -25,11 +25,6 @@ PRODUCT_NAME := robyn
 PRODUCT_DEVICE := robyn
 PRODUCT_MODEL := E10i
 
-# Boot files
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
-endif
-
 # Recovery resources
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/res/images/icon_firmware_error.png:recovery/root/res/images/icon_firmware_error.png \
