@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/tiny.mk)
+$(call inherit-product, device/common/gps/gps_eu_supl.mk)
 $(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
 
 # Recovery resources
@@ -38,13 +41,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/res/images/progress_empty.png:recovery/root/res/images/progress_empty.png \
     $(LOCAL_PATH)/recovery/res/images/progress_fill.png:recovery/root/res/images/progress_fill.png \
     $(LOCAL_PATH)/recovery/res/images/stitch.png:recovery/root/res/images/stitch.png
-
-# Robyn uses low-density artwork where available
-PRODUCT_AAPT_CONFIG := normal ldpi mdpi
-PRODUCT_AAPT_PREF_CONFIG := ldpi
-
-$(call inherit-product, device/ldpi-common/ldpi.mk)
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Prebuilt Binaries
 PRODUCT_COPY_FILES += \
@@ -72,9 +68,16 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/robyn_keypad.kl:system/usr/keylayout/robyn_keypad.kl
 
+# Robyn uses low-density artwork where available
+PRODUCT_AAPT_CONFIG := normal ldpi mdpi
+PRODUCT_AAPT_PREF_CONFIG := ldpi
+$(call inherit-product, device/ldpi-common/ldpi.mk)
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+
 # Inherit products (Most specific first)
 $(call inherit-product, vendor/semc/robyn/robyn-vendor.mk)
 $(call inherit-product, device/semc/msm7x27-common/msm7x27.mk)
+$(call inherit-product, vendor/semc/msm7x27-common/semc-common-blobs.mk)
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := robyn
