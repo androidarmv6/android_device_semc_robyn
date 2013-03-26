@@ -13,15 +13,7 @@
 # limitations under the License.
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/tiny.mk)
-$(call inherit-product, vendor/semc/robyn/robyn-vendor.mk)
 $(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
-
--include device/semc/msm7x27-common/msm7x27.mk
-
-# Discard inherited values and use our own instead.
-PRODUCT_NAME := robyn
-PRODUCT_DEVICE := robyn
-PRODUCT_MODEL := E10i
 
 # Recovery resources
 PRODUCT_COPY_FILES += \
@@ -73,9 +65,18 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/tiwlan.ini:system/etc/tiwlan.ini \
     $(LOCAL_PATH)/prebuilt/framework/com.dsi.ant.antradio_library.jar:system/framework/com.dsi.ant.antradio_library.jar \
     $(LOCAL_PATH)/prebuilt/lib/libaudioeq.so:system/lib/libaudioeq.so \
-	$(LOCAL_PATH)/prebuilt/usr/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
+    $(LOCAL_PATH)/prebuilt/usr/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
     $(LOCAL_PATH)/prebuilt/usr/keychars/robyn_keypad.kcm.bin:system/usr/keychars/robyn_keypad.kcm.bin \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/robyn_keypad.kl:system/usr/keylayout/robyn_keypad.kl
+
+# Inherit products (Most specific first)
+$(call inherit-product, vendor/semc/robyn/robyn-vendor.mk)
+$(call inherit-product, device/semc/msm7x27-common/msm7x27.mk)
+
+# Discard inherited values and use our own instead.
+PRODUCT_NAME := robyn
+PRODUCT_DEVICE := robyn
+PRODUCT_MODEL := E10i
