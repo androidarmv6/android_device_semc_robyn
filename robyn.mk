@@ -14,9 +14,7 @@
 
 # Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/tiny.mk)
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
-$(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
 
 # Recovery resources
 PRODUCT_COPY_FILES += \
